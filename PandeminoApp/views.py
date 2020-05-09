@@ -78,7 +78,7 @@ def api_create_view(request):
     blog_post = BlogPost(title=request.data)
 
     if request.method == "POST":
-        serializer = serializer = BlogPostSerializer(blog_post, data=request.data)
+        serializer = BlogPostSerializer(blog_post, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
