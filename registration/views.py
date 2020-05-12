@@ -22,6 +22,16 @@ def registration_view(request):
             data['response'] = "Sucsefully registred a new user"
             data['mail'] = account.mail
             data['username'] = account.username
+            data['password'] = account.password
         else:
             data = serializer.errors
         return Response(data)
+
+
+@api_view(['GET'])
+def registration_detail_all(request):
+
+    accounts = Account.objects.all()
+    if request.method == "GET":
+        serializer = RegistrationSerlizer(accounts, many=True)
+        return Response(serializer.data)
